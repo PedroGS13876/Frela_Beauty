@@ -157,7 +157,9 @@ layout = dbc.Card([
 
                             dbc.Col([
                                 html.Label("Categoria da receita"),
-                                dbc.Select(id="select_receita", options=[{"label": i, "value": i} for i in cat_receita], value=cat_receita[0])
+                                dbc.Select(id="select_receita", 
+                                options=[{"label": i, "value": i} for i in cat_receita], 
+                                value=cat_receita[0])
                             ], width=4)
                         ], style={"margin-top": "25px"}),
                         
@@ -248,7 +250,9 @@ layout = dbc.Card([
 
                         dbc.Col([
                             html.Label("Categoria da despesa"),
-                            dbc.Select(id="select_despesa", options=[{"label": i, "value": i} for i in cat_despesa])
+                            dbc.Select(id="select_despesa", 
+                            options=[{"label": i, "value": i} for i in cat_despesa],
+                            value=cat_despesa[0])
                         ], width=4)
                     ], style={"margin-top": "25px"}),
                     
@@ -452,6 +456,9 @@ def add_category(n, n2, txt, check_delete, data):
     ]
 )
 def salve_form_receita(n, descricao, valor, date, switches, categoria, dict_receitas):
+    import pdb
+    pdb.set_trace()
+
     df_receitas = pd.DataFrame(dict_receitas)
 
     if n and not(valor == "" or valor== None):
@@ -460,7 +467,7 @@ def salve_form_receita(n, descricao, valor, date, switches, categoria, dict_rece
         categoria = categoria[0] if type(categoria) == list else categoria
 
         recebido = 1 if 1 in switches else 0
-        fixo = 0 if 2 in switches else 0
+        fixo = 1 if 2 in switches else 0
 
         df_receitas.loc[df_receitas.shape[0]] = [valor, recebido, fixo, date, categoria, descricao]
         df_receitas.to_csv("df_receitas.csv")
