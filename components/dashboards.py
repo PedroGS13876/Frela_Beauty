@@ -69,7 +69,7 @@ layout = dbc.Col([
     ], style={'margin': '10px'}),
 
     dbc.Row([
-        dbc.Cal([
+        dbc.Col([
             dbc.Card([
                 html.Legend("Filtrar lançamentos", className="card_title"),
                 html.Label("Categorias das receitas"),
@@ -119,3 +119,33 @@ layout = dbc.Col([
 
 
 # =========  Callbacks  =========== #
+@app.callback([Output("dropdown-receita", "options"),
+    Output("dropdown-receita", "value"),
+    Output("p-receita-dashboards", "children")],
+    Input("store-receitas", "data"))
+def populate_dropdownvalues(data):
+    import pdb
+    
+    df = pd.DataFrame(data)
+    valor = df['Valor'].sum()
+    val = df.Categoria.unique().tolist()
+    pdb.set_trace()
+
+    
+    return ([{"label": x, "value": x} for x in val], val, f"R$ {valor}")
+
+@app.callback([Output("dropdown-despesa", "options"),
+    Output("dropdown-despesa", "value"),
+    Output("p-despesa-dashboards", "children")],
+    Input("store-despesas", "data"))
+def populate_dropdownvalues(data):
+    import pdb
+    
+    df = pd.DataFrame(data)
+    valor = df['Valor'].sum()
+    val = df.Categoria.unique().tolist()
+    pdb.set_trace()
+
+    valor = df_despesas['Valor'].sum() - df_despesas['Valor'].sum()
+
+    return f"R$ {valor}"
