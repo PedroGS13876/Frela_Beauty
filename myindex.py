@@ -9,8 +9,6 @@ import plotly.express as px
 from app import *
 from components import sidebar, dashboards, extratos
 
-from globals import*
-
 # DataFrames and Dcc.Store
 
 df_receitas = pd.read_csv("df_receitas.csv", index_col=0, parse_dates=True)
@@ -30,10 +28,10 @@ list_despesas_aux = list_despesas.to_dict()
 content = html.Div(id="page-content")
 
 app.layout = dbc.Container(children=[
-    dcc.Store(id='store-receitas', data=df_receitas.to_dict()),
-    dcc.Store(id="store-despesas", data=df_despesas.to_dict()),
-    dcc.Store(id='stored-cat-receitas', data=list_receitas.to_dict()),
-    dcc.Store(id='stored-cat-despesas', data=list_despesas.to_dict()),
+    dcc.Store(id='store-receitas', data=df_receitas_aux),
+    dcc.Store(id="store-despesas", data=df_despesas_aux),
+    dcc.Store(id='stored-cat-receitas', data=list_receitas_aux),
+    dcc.Store(id='stored-cat-despesas', data=list_despesas_aux),
     
     dbc.Row([
         dbc.Col([
