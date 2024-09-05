@@ -1,5 +1,5 @@
 from dash import html, dcc
-from dash.dependencies import Input, Output, State
+from dash.dependencies import Input, Output
 import dash_bootstrap_components as dbc
 from datetime import date, datetime
 
@@ -28,25 +28,25 @@ calendario2 = html.Div([
     html.Div(id='output_container_datepicker2')
 ])
 
-
 # =========  Callbacks  =========== #
 @app.callback(
     Output('output_container_datepicker', 'children'),
     Input('date_picker_single', 'date'))
-def update_output(date_value):
+def update_output_date_picker_single(date_value):
     string_prefix = 'Selecionado: '
     if date_value is not None:
         date_object = date.fromisoformat(date_value)
         date_string = date_object.strftime('%d %B, %Y')
         return string_prefix + date_string
+    return string_prefix + 'Nenhuma data selecionada'
 
-# 2
 @app.callback(
     Output('output_container_datepicker2', 'children'),
     Input('date_picker_single2', 'date'))
-def update_output(date_value):
+def update_output_date_picker_single2(date_value):
     string_prefix = 'Selecionado: '
     if date_value is not None:
         date_object = date.fromisoformat(date_value)
         date_string = date_object.strftime('%d %B, %Y')
         return string_prefix + date_string
+    return string_prefix + 'Nenhuma data selecionada'

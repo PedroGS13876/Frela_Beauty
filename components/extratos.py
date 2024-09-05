@@ -40,7 +40,7 @@ layout = dbc.Col([
     Output('tabela-despesas', 'children'),
     Input('store-despesas', 'data')
 )
-def imprimir_tabela (data):
+def imprimir_tabela(data):
     df = pd.DataFrame(data)
     df['Data'] = pd.to_datetime(df['Data']).dt.date
 
@@ -52,7 +52,7 @@ def imprimir_tabela (data):
 
     df = df.fillna('-')
 
-    df.sort_values(by='Data', ascending=False)
+    df = df.sort_values(by='Data', ascending=False)
 
     tabela = dash_table.DataTable(
         id='datatable-interactivity',
@@ -62,17 +62,16 @@ def imprimir_tabela (data):
             else {"name": i, "id": i, "deletable": False, "selectable": False}
             for i in df.columns
         ],
-
         data=df.to_dict('records'),
-        filter_action="native",    
-        sort_action="native",       
-        sort_mode="single",  
-        selected_columns=[],        
-        selected_rows=[],          
-        page_action="native",      
-        page_current=0,             
-        page_size=10,                        
-    ),
+        filter_action="native",
+        sort_action="native",
+        sort_mode="single",
+        selected_columns=[],
+        selected_rows=[],
+        page_action="native",
+        page_current=0,
+        page_size=10,
+    )
 
     return tabela
 
