@@ -36,7 +36,7 @@ layout = dbc.Row([
             dbc.CardGroup([
                 dbc.Card([
                     html.Legend("Produtos Indicados"),
-                    html.H5("Última semana", id="p-receita-dashboards"),
+                    html.H5("Últimas semanas", id="p-receita-dashboards"),
                 ], style={"padding-left": "20px", "padding-top": "10px"}),
             ])
         ], width=3),
@@ -52,7 +52,7 @@ layout = dbc.Row([
             dbc.CardGroup([
                 dbc.Card([
                     html.Legend("Clientes"),
-                    html.H5("", id="p-despesa-dashboards"),
+                    html.H5("Últimas semanas", id="p-despesa-dashboards"),
                 ], style={"padding-left": "20px", "padding-top": "10px"}),
             ])
         ], width=3),
