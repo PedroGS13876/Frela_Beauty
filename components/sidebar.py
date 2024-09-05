@@ -17,105 +17,100 @@ import numpy as np
 import pandas as pd
 from globals import *
 
-#df_cat_receita = pd.read_csv("C:\\Users\\Rodrigo\\Desktop\\Dash - Rodrigo Vanzelotti\\MyBudget\\MyBudget\\df_cat_receita.csv")
-#cat_receita = df_cat_receita['Categoria'].tolist()
-
-#df_cat_despesa = pd.read_csv("C:\\Users\\Rodrigo\\Desktop\\Dash - Rodrigo Vanzelotti\\MyBudget\\MyBudget\\df_cat_despesa.csv")
-#cat_despesa = df_cat_despesa['Categoria'].tolist()
-
 # ========= Layout ========= #
 layout = dbc.Card([
-                html.H1("MyBudget", className="text-primary"),
-                html.P("By ASIMOV", className="text-info"),
-                html.Hr(),
+    # Adicionando a imagem no lugar do título e descrição
+    html.Div([
+        html.Img(src="https://beauty-intelligence-admin-web.netlify.app/assets/layout/images/logo.png", 
+            style={"width": "100%", "height": "auto", "margin-bottom": "20px"})
+    ], style={"text-align": "center"}),
 
-
+    # Continuando com o restante do layout
     # Seção PERFIL ------------------------
-                dbc.Button(id='botao_avatar',
-                    children=[html.Img(src="/assets/img_hom.png", id="avatar_change", alt="Avatar", className='perfil_avatar'),
-                ], style={'background-color': 'transparent', 'border-color': 'transparent'}),
-
-                dbc.Modal([
-                    dbc.ModalHeader(dbc.ModalTitle("Selecionar Perfil")),
-                    dbc.ModalBody([
-                        dbc.Row([
-                            dbc.Col([
-                                dbc.Card([
-                                    dbc.CardImg(src="/assets/img_hom.png", className='perfil_avatar', top=True),
-                                    dbc.CardBody([
-                                        html.H4("Perfil Homem", className="card-title"),
-                                        html.P(
-                                            "Um Card com exemplo do perfil Homem. Texto para preencher o espaço",
-                                            className="card-text",
-                                        ),
-                                        dbc.Button("Acessar", color="warning"),
-                                    ]),
-                                ]),
-                            ], width=6),
-                            dbc.Col([
-                                dbc.Card([
-                                    dbc.CardImg(src="/assets/img_fem2.png", top=True, className='perfil_avatar'),
-                                    dbc.CardBody([
-                                        html.H4("Perfil Mulher", className="card-title"),
-                                        html.P(
-                                            "Um Card com exemplo do perfil Mulher. Texto para preencher o espaço",
-                                            className="card-text",
-                                        ),
-                                        dbc.Button("Acessar", color="warning"),
-                                    ]),
-                                ]),
-                            ], width=6),
-                        ], style={"padding": "5px"}),
-                        dbc.Row([
-                            dbc.Col([
-                                dbc.Card([
-                                    dbc.CardImg(src="/assets/img_home.png", top=True, className='perfil_avatar'),
-                                    dbc.CardBody([
-                                        html.H4("Perfil Casa", className="card-title"),
-                                        html.P(
-                                            "Um Card com exemplo do perfil Casa. Texto para preencher o espaço",
-                                            className="card-text",
-                                        ),
-                                        dbc.Button("Acessar",  color="warning"),
-                                    ]),
-                                ]),
-                            ], width=6),
-                            dbc.Col([
-                                dbc.Card([
-                                    dbc.CardImg(src="/assets/img_plus.png", top=True, className='perfil_avatar'),
-                                    dbc.CardBody([
-                                        html.H4("Adicionar Novo Perfil", className="card-title"),
-                                        html.P(
-                                            "Esse projeto é um protótipo, o botão de adicionar um novo perfil esta desativado momentaneamente!",
-                                            className="card-text",
-                                        ),
-                                        dbc.Button("Adicionar", color="success"),
-                                    ]),
-                                ]),
-                            ], width=6),
-                        ], style={"padding": "5px"}),
-                    ]),
-                ],
-                style={"background-color": "rgba(0, 0, 0, 0.5)"},
-                id="modal-perfil",
-                size="lg",
-                is_open=False,
-                centered=True,
-                backdrop=True
-                ),  
-
-    # Seção + NOVO ------------------------
+    dbc.Modal([
+        dbc.ModalHeader(dbc.ModalTitle("Selecionar Perfil")),
+        dbc.ModalBody([
             dbc.Row([
                 dbc.Col([
-                    dbc.Button(color="success", id="open-novo-receita",
-                            children=["+ Receita"]),
+                    dbc.Card([
+                        dbc.CardImg(src="https://beauty-intelligence-admin-web.netlify.app/assets/layout/images/logo.png", 
+                                    className='perfil_avatar', top=True),
+                        dbc.CardBody([
+                            html.H4("Perfil Homem", className="card-title"),
+                            html.P(
+                                "Um Card com exemplo do perfil Homem. Texto para preencher o espaço",
+                                className="card-text",
+                            ),
+                            dbc.Button("Acessar", color="warning"),
+                        ]),
+                    ]),
                 ], width=6),
-
                 dbc.Col([
-                    dbc.Button(color="danger", id="open-novo-despesa",
-                            children=["+ Despesa"]),
-                ], width=6)
-            ]),
+                    dbc.Card([
+                        dbc.CardImg(src="https://beauty-intelligence-admin-web.netlify.app/assets/layout/images/logo.png", 
+                                    top=True, className='perfil_avatar'),
+                        dbc.CardBody([
+                            html.H4("Perfil Mulher", className="card-title"),
+                            html.P(
+                                "Um Card com exemplo do perfil Mulher. Texto para preencher o espaço",
+                                className="card-text",
+                            ),
+                            dbc.Button("Acessar", color="warning"),
+                        ]),
+                    ]),
+                ], width=6),
+            ], style={"padding": "5px"}),
+            dbc.Row([
+                dbc.Col([
+                    dbc.Card([
+                        dbc.CardImg(src="https://beauty-intelligence-admin-web.netlify.app/assets/layout/images/logo.png", 
+                                    top=True, className='perfil_avatar'),
+                        dbc.CardBody([
+                            html.H4("Perfil Casa", className="card-title"),
+                            html.P(
+                                "Um Card com exemplo do perfil Casa. Texto para preencher o espaço",
+                                className="card-text",
+                            ),
+                            dbc.Button("Acessar",  color="warning"),
+                        ]),
+                    ]),
+                ], width=6),
+                dbc.Col([
+                    dbc.Card([
+                        dbc.CardImg(src="https://beauty-intelligence-admin-web.netlify.app/assets/layout/images/logo.png", 
+                                    top=True, className='perfil_avatar'),
+                        dbc.CardBody([
+                            html.H4("Adicionar Novo Perfil", className="card-title"),
+                            html.P(
+                                "Esse projeto é um protótipo, o botão de adicionar um novo perfil está desativado momentaneamente!",
+                                className="card-text",
+                            ),
+                            dbc.Button("Adicionar", color="success"),
+                        ]),
+                    ]),
+                ], width=6),
+            ], style={"padding": "5px"}),
+        ]),
+    ],
+    style={"background-color": "rgba(0, 0, 0, 0.5)"},
+    id="modal-perfil",
+    size="lg",
+    is_open=False,
+    centered=True,
+    backdrop=True),   
+
+# Seção + NOVO ------------------------
+    dbc.Row([
+        dbc.Col([
+            dbc.Button(color="success", id="open-novo-receita",
+                children=["+ Receita"]),
+        ], width=6),
+
+        dbc.Col([
+            dbc.Button(color="danger", id="open-novo-despesa",
+                children=["+ Despesa"]),
+        ], width=6)
+    ]),
 
 
             # Modal Receita
@@ -296,21 +291,103 @@ layout = dbc.Card([
             is_open=False,
             centered=True,
             backdrop=True),
+
+            ### Modal Despesa ###
+            dbc.Modal([
+                dbc.ModalHeader(dbc.ModalTitle("Adicionar despesa")),
+                dbc.ModalBody([
+                    dbc.Row([
+                        dbc.Col([
+                                dbc.Label("Descrição: "),
+                                dbc.Input(placeholder="Ex.: dividendos da bolsa, herança...", id="txt-despesa"),
+                        ], width=6), 
+                        dbc.Col([
+                                dbc.Label("Valor: "),
+                                dbc.Input(placeholder="$100.00", id="valor_despesa", value="")
+                        ], width=6)
+                    ]),
+
+                    dbc.Row([
+                        dbc.Col([
+                            dbc.Label("Data: "),
+                            dcc.DatePickerSingle(id='date-despesas',
+                                min_date_allowed=date(2020, 1, 1),
+                                max_date_allowed=date(2030, 12, 31),
+                                date=datetime.today(),
+                                style={"width": "100%"}
+                            ),
+                        ], width=4),
+
+                        dbc.Col([
+                            dbc.Label("Opções Extras"),
+                            dbc.Checklist(
+                                options=[{"label": "Foi recebida", "value": 1},
+                                    {"label": "despesa Recorrente", "value": 2}],
+                                value=[1],
+                                id="switches-input-despesa",
+                                switch=True),
+                        ], width=4),
+
+                        dbc.Col([
+                            html.Label("Categoria da despesa"),
+                            dbc.Select(id="select_despesa", options=[{"label": i, "value": i} for i in cat_despesa])
+                        ], width=4)
+                    ], style={"margin-top": "25px"}),
+                    
+                    dbc.Row([
+                        dbc.Accordion([
+                                dbc.AccordionItem(children=[
+                                    dbc.Row([
+                                        dbc.Col([
+                                            html.Legend("Adicionar categoria", style={'color': 'green'}),
+                                            dbc.Input(type="text", placeholder="Nova categoria...", id="input-add-despesa", value=""),
+                                            html.Br(),
+                                            dbc.Button("Adicionar", className="btn btn-success", id="add-category-despesa", style={"margin-top": "20px"}),
+                                            html.Br(),
+                                            html.Div(id="category-div-add-despesa", style={}),
+                                        ], width=6),
+
+                                        dbc.Col([
+                                            html.Legend("Excluir categorias", style={'color': 'red'}),
+                                            dbc.Checklist(
+                                                id="checklist-selected-style-despesa",
+                                                options=[{"label": i, "value": i} for i in cat_despesa],
+                                                value=[],
+                                                label_checked_style={"color": "red"},
+                                                input_checked_style={"backgroundColor": "#fa7268",
+                                                    "borderColor": "#ea6258"},
+                                            ),                                                            
+                                            dbc.Button("Remover", color="warning", id="remove-category-despesa", style={"margin-top": "20px"}),
+                                        ], width=6)
+                                    ]),
+                                ], title="Adicionar/Remover Categorias",
+                                ),
+                            ], flush=True, start_collapsed=True, id='accordion-despesa'),
+                                                    
+                        dbc.ModalFooter([
+                            dbc.Button("Adicionar despesa", color="error", id="salvar_despesa", value="despesa"),
+                            dbc.Popover(dbc.PopoverBody("Despesa Salva"), target="salvar_despesa", placement="left", trigger="click"),
+                        ]
+                        )
+                    ], style={"margin-top": "25px"}),
+                ])
+            ],
+            style={"background-color": "rgba(17, 140, 79, 0.05)"},
+            id="modal-novo-despesa",
+            size="lg",
+            is_open=False,
+            centered=True,
+            backdrop=True),
         
 # Seção NAV ------------------------
-            html.Hr(),
-            dbc.Nav(
-                [
-                    dbc.NavLink("Dashboard", href="/dashboards", active="exact"),
-                    dbc.NavLink("Extratos", href="/extratos", active="exact"),
-                ], vertical=True, pills=True, id='nav_buttons', style={"margin-bottom": "50px"}),
-            ThemeChangerAIO(aio_id="theme", radio_props={"value":dbc.themes.QUARTZ})
-
-        ], id='sidebar_completa'
-    )
-
-
-
+    html.Hr(),
+    dbc.Nav(
+        [
+            dbc.NavLink("Dashboard", href="/dashboards", active="exact"),
+            dbc.NavLink("Relatório", href="/relatorio", active="exact"),
+        ], vertical=True, pills=True, id='nav_buttons', style={"margin-bottom": "50px"}),
+    ThemeChangerAIO(aio_id="theme", radio_props={"value": dbc.themes.QUARTZ})
+], id='sidebar_completa')
 
 # =========  Callbacks  =========== #
 # Pop-up receita
@@ -439,9 +516,7 @@ def add_category(n, n2, txt, check_delete, data):
 # Enviar Form receita
 @app.callback(
     Output('store-receitas', 'data'),
-
     Input("salvar_receita", "n_clicks"),
-
     [
         State("txt-receita", "value"),
         State("valor_receita", "value"),
@@ -472,9 +547,7 @@ def salve_form_receita(n, descricao, valor, date, switches, categoria, dict_rece
 # Enviar Form despesa
 @app.callback(
     Output('store-despesas', 'data'),
-
     Input("salvar_despesa", "n_clicks"),
-
     [
         State("valor_despesa", "value"),
         State("switches-input-despesa", "value"),
