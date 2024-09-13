@@ -416,11 +416,11 @@ def manage_category_receita(n, n2, txt, check_delete, data):
     Output('store-receitas', 'data'),
     Input("salvar_receita", "n_clicks"),
     [State("txt-receita", "value"),
-     State("valor_receita", "value"),
-     State("date-receitas", "date"),
-     State("switches-input-receita", "value"),
-     State("select_receita", "value"),
-     State('store-receitas', 'data')]
+    State("valor_receita", "value"),
+    State("date-receitas", "date"),
+    State("switches-input-receita", "value"),
+    State("select_receita", "value"),
+    State('store-receitas', 'data')]
 )
 def save_form_receita(n, descricao, valor, date, switches, categoria, dict_receitas):
     df_receitas = pd.DataFrame(dict_receitas)
