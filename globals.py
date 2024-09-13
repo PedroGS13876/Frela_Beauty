@@ -24,17 +24,29 @@ else:
     df_despesas.to_csv("df_despesas.csv", index=False)
     df_receitas.to_csv("df_receitas.csv", index=False)
 
+# Função para recriar os arquivos de categorias caso a coluna 'Categoria' não seja encontrada
+def recreate_category_files():
+    cat_receita = ['Salário', 'Investimentos', 'Comissão']
+    cat_despesa = ['Alimentação', 'Aluguel', 'Gasolina', 'Saúde', 'Lazer']
+    
+    df_cat_receita = pd.DataFrame({'Categoria': cat_receita})
+    df_cat_despesa = pd.DataFrame({'Categoria': cat_despesa})
+    
+    df_cat_receita.to_csv("df_cat_receita.csv", index=False)
+    df_cat_despesa.to_csv("df_cat_despesa.csv", index=False)
+
 # Verificação e leitura dos arquivos de categorias
 if ("df_cat_receita.csv" in os.listdir()) and ("df_cat_despesa.csv" in os.listdir()):
     df_cat_receita = pd.read_csv("df_cat_receita.csv", index_col=0)
     df_cat_despesa = pd.read_csv("df_cat_despesa.csv", index_col=0)
-    cat_receita = df_cat_receita['Categoria'].tolist()
-    cat_despesa = df_cat_despesa['Categoria'].tolist()
-else:
-    cat_receita = {'Categoria': ["Salário", "Investimentos", "Comissão"]}
-    cat_despesa = {'Categoria': ["Alimentação", "Aluguel", "Gasolina", "Saúde", "Lazer"]}
     
-    df_cat_receita = pd.DataFrame(cat_receita)
-    df_cat_despesa = pd.DataFrame(cat_despesa)
-    df_cat_receita.to_csv("df_cat_receita.csv", index=False)
-    df_cat_despesa.to_csv("df_cat_despesa.csv", index=False)
+    # Verifica se a coluna "Categoria" existe antes de tentar convertê-la em lista
+    if 'Categoria' in df_cat_receita.columns and 'Categoria' in df_cat_despesa.columns:
+        cat_receita = df_cat_receita['Categoria'].tolist()
+        cat_despesa = df_cat_despesa['Categoria'].tolist()
+    else:
+        print("Erro: Coluna 'Categoria' não encontrada. Recriando arquivos.")
+        recreate_category_files()  # Recria os arquivos com dados padrão
+else:
+    print("Arquivos de categorias não encontrados. Recriando arquivos.")
+    recreate_category_files()
