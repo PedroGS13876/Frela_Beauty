@@ -22,8 +22,8 @@ layout = dbc.Card([
     # Adicionando a imagem no lugar do título e descrição
     html.Div([
         html.Img(src="https://beauty-intelligence-admin-web.netlify.app/assets/layout/images/logo.png", 
-            style={"width": "100%", "height": "auto", "margin-bottom": "20px"})
-    ], style={"text-align": "center"}),
+            style={"width": "100%", "height": "auto", "margin-bottom": "20px"})  # Original
+    ], style={"text-align": "center"}),  # Original
 
     # Continuando com o restante do layout
     # Seção PERFIL ------------------------
@@ -92,7 +92,7 @@ layout = dbc.Card([
             ], style={"padding": "5px"}),
         ]),
     ],
-    style={"background-color": "rgba(0, 0, 0, 0.5)"},
+    style={"background-color": "rgba(0, 0, 0, 0.5)"},  # Original
     id="modal-perfil",
     size="lg",
     is_open=False,
@@ -105,7 +105,7 @@ layout = dbc.Card([
         [
             dbc.NavLink("Dashboard", href="/dashboards", active="exact"),
             dbc.NavLink("Relatório", href="/relatorio", active="exact"),
-        ], vertical=True, pills=True, id='nav_buttons', style={"margin-bottom": "50px"}),
+        ], vertical=True, pills=True, id='nav_buttons', style={"margin-bottom": "50px"}),  # Original
 
     ThemeChangerAIO(aio_id="theme", radio_props={"value": dbc.themes.QUARTZ})
 ], id='sidebar_completa')
