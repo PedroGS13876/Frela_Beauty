@@ -112,8 +112,8 @@ layout = dbc.Row([
 # Dropdown Receita
 @app.callback(
     [Output("dropdown-receita", "options"),
-     Output("dropdown-receita", "value"),
-     Output("p-receita-dashboards", "children")],
+    Output("dropdown-receita", "value"),
+    Output("p-receita-dashboards", "children")],
     Input("store-receitas", "data")
 )
 def populate_dropdown_receitas(data):
@@ -125,8 +125,8 @@ def populate_dropdown_receitas(data):
 # Dropdown Despesa
 @app.callback(
     [Output("dropdown-despesa", "options"),
-     Output("dropdown-despesa", "value"),
-     Output("p-despesa-dashboards", "children")],
+    Output("dropdown-despesa", "value"),
+    Output("p-despesa-dashboards", "children")],
     Input("store-despesas", "data")
 )
 def populate_dropdown_despesas(data):
@@ -139,7 +139,7 @@ def populate_dropdown_despesas(data):
 @app.callback(
     Output("p-saldo-dashboards", "children"),
     [Input("store-despesas", "data"),
-     Input("store-receitas", "data")]
+    Input("store-receitas", "data")]
 )
 def saldo_total(despesas, receitas):
     df_despesas = pd.DataFrame(despesas)
@@ -151,10 +151,10 @@ def saldo_total(despesas, receitas):
 @app.callback(
     Output('graph1', 'figure'),
     [Input('store-despesas', 'data'),
-     Input('store-receitas', 'data'),
-     Input("dropdown-despesa", "value"),
-     Input("dropdown-receita", "value"),
-     Input(ThemeChangerAIO.ids.radio("theme"), "value")]
+    Input('store-receitas', 'data'),
+    Input("dropdown-despesa", "value"),
+    Input("dropdown-receita", "value"),
+    Input(ThemeChangerAIO.ids.radio("theme"), "value")]
 )
 def update_output(data_despesa, data_receita, despesa, receita, theme):
     df_ds = pd.DataFrame(data_despesa).sort_values(by='Data', ascending=True)
@@ -187,12 +187,12 @@ def update_output(data_despesa, data_receita, despesa, receita, theme):
 @app.callback(
     Output('graph2', 'figure'),
     [Input('store-receitas', 'data'),
-     Input('store-despesas', 'data'),
-     Input('dropdown-receita', 'value'),
-     Input('dropdown-despesa', 'value'),
-     Input('date-picker-config', 'start_date'),
-     Input('date-picker-config', 'end_date'),
-     Input(ThemeChangerAIO.ids.radio("theme"), "value")]
+    Input('store-despesas', 'data'),
+    Input('dropdown-receita', 'value'),
+    Input('dropdown-despesa', 'value'),
+    Input('date-picker-config', 'start_date'),
+    Input('date-picker-config', 'end_date'),
+    Input(ThemeChangerAIO.ids.radio("theme"), "value")]
 )
 def graph2_show(data_receita, data_despesa, receita, despesa, start_date, end_date, theme):
     df_ds = pd.DataFrame(data_despesa)
@@ -222,8 +222,8 @@ def graph2_show(data_receita, data_despesa, receita, despesa, start_date, end_da
 @app.callback(
     Output('graph3', "figure"),
     [Input('store-receitas', 'data'),
-     Input('dropdown-receita', 'value'),
-     Input(ThemeChangerAIO.ids.radio("theme"), "value")]
+    Input('dropdown-receita', 'value'),
+    Input(ThemeChangerAIO.ids.radio("theme"), "value")]
 )
 def pie_receita(data_receita, receita, theme):
     df = pd.DataFrame(data_receita)
@@ -239,8 +239,8 @@ def pie_receita(data_receita, receita, theme):
 @app.callback(
     Output('graph4', "figure"),
     [Input('store-despesas', 'data'),
-     Input('dropdown-despesa', 'value'),
-     Input(ThemeChangerAIO.ids.radio("theme"), "value")]
+    Input('dropdown-despesa', 'value'),
+    Input(ThemeChangerAIO.ids.radio("theme"), "value")]
 )
 def pie_despesa(data_despesa, despesa, theme):
     df = pd.DataFrame(data_despesa)
