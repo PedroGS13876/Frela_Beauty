@@ -11,16 +11,16 @@ from components import sidebar, dashboards, extratos
 
 # DataFrames and Dcc.Store
 df_receitas = pd.read_csv("df_receitas.csv", index_col=0, parse_dates=True)
-df_receitas_aux = df_receitas.to_dict('records')  # Convert to list of records for dcc.Store
+df_receitas_aux = df_receitas.to_dict('records')  # Converter para uma lista de registros para dcc.Store
 
 df_despesas = pd.read_csv("df_despesas.csv", index_col=0, parse_dates=True)
-df_despesas_aux = df_despesas.to_dict('records')  # Convert to list of records for dcc.Store
+df_despesas_aux = df_despesas.to_dict('records')  # Converter para uma lista de registros para dcc.Store
 
 list_receitas = pd.read_csv('df_cat_receita.csv', index_col=0)
-list_receitas_aux = list_receitas.to_dict('records')  # Convert to list of records for dcc.Store
+list_receitas_aux = list_receitas.to_dict('records')  # Converter para uma lista de registros para dcc.Store
 
 list_despesas = pd.read_csv('df_cat_despesa.csv', index_col=0)
-list_despesas_aux = list_despesas.to_dict('records')  # Convert to list of records for dcc.Store
+list_despesas_aux = list_despesas.to_dict('records')  # Converter para uma lista de registros para dcc.Store
 
 # =========  Layout  =========== #
 app.layout = dbc.Container(children=[
@@ -50,7 +50,7 @@ def render_page_content(pathname):
     if pathname == "/extratos":
         return extratos.layout
 
-    return html.Div([  # Provide a default return for unknown paths
+    return html.Div([  # Fornecer um retorno padrão para caminhos desconhecidos
         "404 Page Not Found"
     ])
 
